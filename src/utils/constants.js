@@ -7,6 +7,8 @@ export const YOUTUBE_VIDEO_API =
 export const YOUTUBE_SEARCH_API =
   "https://corsproxy.io/?https://youtube-search-suggestion.onrender.com/?q=";
 
+export const OFFSET_LIVE_CHAT = 25;
+
 export const commentsData = [
   {
     id: 1,
