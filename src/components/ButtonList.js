@@ -13,7 +13,7 @@ const buttonNameList = [
 
 const ButtonList = () => {
   return (
-    <div className="flex p-2 gap-4 justify-center">
+    <div className="flex flex-wrap p-2 gap-4 justify-center">
       {buttonNameList.map((buttonName, index) => {
         return <Button key={index} name={buttonName} />;
       })}

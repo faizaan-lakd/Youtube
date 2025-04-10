@@ -1,4 +1,4 @@
-const GOOGLE_API_KEY = "AIzaSyBUKH-L5LHBURS8T3nOWsV5PSatIJbmg-o";
+export const GOOGLE_API_KEY = "AIzaSyBUKH-L5LHBURS8T3nOWsV5PSatIJbmg-o";
 
 export const YOUTUBE_VIDEO_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key=" +
@@ -7,7 +7,20 @@ export const YOUTUBE_VIDEO_API =
 export const YOUTUBE_SEARCH_API =
   "https://corsproxy.io/?https://youtube-search-suggestion.onrender.com/?q=";
 
+export const YOUTUBE_SEARCH_BY_ID_API =
+  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=";
+
 export const OFFSET_LIVE_CHAT = 25;
+
+export function numFormatter(num) {
+  if (num > 999 && num < 1000000) {
+    return (num / 1000).toFixed(1) + "K"; // convert to K for number from > 1000 < 1 million
+  } else if (num > 1000000) {
+    return (num / 1000000).toFixed(1) + "M"; // convert to M for number from > 1 million
+  } else if (num < 900) {
+    return num; // if value < 1000, nothing to do
+  }
+}
 
 export const commentsData = [
   {
