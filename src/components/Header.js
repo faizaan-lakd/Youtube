@@ -7,9 +7,11 @@ import { toggleMenu } from "../utils/appSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
@@ -18,7 +20,9 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const searchCache = useSelector((store) => store.search);
+  const searchCache = useSelector(
+    (store) => store.search.cachedSuggestionResults
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -47,6 +51,12 @@ const Header = () => {
     );
   };
 
+  const handleSearchButton = async () => {
+    if (searchQuery.trim() !== "") {
+      navigate("/results?q=" + searchQuery);
+    }
+  };
+
   return (
     <div className="grid grid-flow-col p-4 my-2 shadow-lg items-center justify-between">
       <div className="flex col-span-3">
@@ -69,13 +79,16 @@ const Header = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
           />
-          <button className="border border-gray-400 px-4 py-1 rounded-r-full bg-gray-100">
+          <button
+            className="border border-gray-400 px-4 py-1 rounded-r-full bg-gray-100"
+            onClick={() => handleSearchButton()}
+          >
             <img className="h-6" alt="search-icon" src={searchIcon} />
           </button>
         </div>
-        {showSuggestions && (
+        {showSuggestions && suggestions.length > 0 && (
           <div className="absolute py-2 px-3 bg-white w-full shadow-lg rounded-xl border border-gray-400">
             <ul>
               {suggestions.map((suggest) => (
@@ -88,7 +101,7 @@ const Header = () => {
                     alt="search-icon"
                     src={searchIcon}
                   />
-                  {suggest}
+                  <Link to={"/results?q=" + suggest}>{suggest}</Link>
                 </li>
               ))}
             </ul>

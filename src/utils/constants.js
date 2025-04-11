@@ -10,6 +10,9 @@ export const YOUTUBE_SEARCH_API =
 export const YOUTUBE_SEARCH_BY_ID_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=";
 
+export const YOUTUBE_SEARCH_RESULTS_API =
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&q=";
+
 export const OFFSET_LIVE_CHAT = 25;
 
 export function numFormatter(num) {
