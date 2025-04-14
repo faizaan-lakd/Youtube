@@ -13,7 +13,9 @@ const VideoCard = ({ info }) => {
         <li className="font-bold py-1 pt-2 truncate">{title}</li>
         <li className="text-sm text-gray-500 truncate">{channelTitle}</li>
         <ul className="text-xs flex gap-3">
-          <li>{numFormatter(statistics.viewCount)} views</li>
+          {statistics !== undefined && (
+            <li>{numFormatter(statistics?.viewCount)} views</li>
+          )}
           <li>{moment(publishedAt).fromNow()}</li>
         </ul>
       </ul>
