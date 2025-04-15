@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import CommentsContainer from "./CommentsContainer";
 import LiveChat from "./LiveChat";
 import { GOOGLE_API_KEY, YOUTUBE_SEARCH_BY_ID_API } from "../utils/constants";
+import VideoInfo from "./VideoInfo";
 
 const WatchPage = () => {
   let [searchParams] = useSearchParams();
@@ -41,12 +42,7 @@ const WatchPage = () => {
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
           ></iframe>
-          <h2 className="font-bold text-xl mt-3">
-            {videoDetails?.snippet?.title}
-          </h2>
-          <p className="text-sm text-gray-500 truncate">
-            {videoDetails?.snippet?.channelTitle}
-          </p>
+          <VideoInfo videoDetails={videoDetails} />
         </div>
         <div>
           <CommentsContainer />
