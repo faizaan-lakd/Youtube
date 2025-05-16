@@ -74,7 +74,7 @@ const Header = () => {
             src={youtubeMobileIcon}
           />
           <img
-            className="h-7 mx-4 inline-block max-sm:hidden"
+            className="h-7 mx-4 inline-block max-md:hidden"
             alt="youtube-logo"
             src={youtubeIcon}
           />

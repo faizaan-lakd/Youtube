@@ -1,12 +1,12 @@
 import "./App.css";
 import { Provider } from "react-redux";
 import Body from "./components/Body";
-import Header from "./components/Header";
 import store from "./utils/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainContainer from "./components/MainContainer";
 import WatchPage from "./components/WatchPage";
 import SearchResults from "./components/SearchResults";
+import { Analytics } from "@vercel/analytics/react";
 
 const appRouter = createBrowserRouter([
   {
@@ -33,6 +33,7 @@ function App() {
   return (
     <Provider store={store}>
       <div>
+        <Analytics />
         <RouterProvider router={appRouter} />
       </div>
     </Provider>
