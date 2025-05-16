@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import menuIcon from "../assets/hamburger-menu.png";
 import userIcon from "../assets/user-icon.svg";
 import youtubeIcon from "../assets/youtube-logo.png";
+import youtubeMobileIcon from "../assets/youtube-mobile-logo.jpg";
 import searchIcon from "../assets/search-icon.svg";
 import { toggleMenu } from "../utils/appSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,7 +59,7 @@ const Header = () => {
   };
 
   return (
-    <div className="grid grid-flow-col p-4 my-2 shadow-lg items-center justify-between">
+    <div className="grid grid-flow-col p-2 md:p-4 my-2 shadow-lg items-center justify-between">
       <div className="flex col-span-3">
         <img
           onClick={() => toggleMenuHandler()}
@@ -67,11 +68,20 @@ const Header = () => {
           src={menuIcon}
         />
         <a href="/">
-          <img className="h-7 mx-4" alt="youtube-logo" src={youtubeIcon} />
+          <img
+            className="h-7 mx-2 md:hidden"
+            alt="youtube-logo"
+            src={youtubeMobileIcon}
+          />
+          <img
+            className="h-7 mx-4 inline-block max-sm:hidden"
+            alt="youtube-logo"
+            src={youtubeIcon}
+          />
         </a>
       </div>
 
-      <div className="col-span-6 relative">
+      <div className="col-span-2 md:col-span-6 relative">
         <div className="flex">
           <input
             className="w-full border border-gray-400 p-1 px-4 rounded-l-full"
@@ -109,7 +119,7 @@ const Header = () => {
         )}
       </div>
 
-      <div className="col-span-3 flex justify-end">
+      <div className="ml-2 col-span-3 flex justify-end">
         <img className="h-7" alt="user-icon" src={userIcon} />
       </div>
     </div>
